@@ -3,6 +3,7 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
+import Search from './Search.js';
 
 // var App = () => (
 //   <div>
@@ -30,6 +31,7 @@ class App extends React.Component {
       currentList: exampleVideoData      
     };
     this.handleClick = this.handleClick.bind(this);
+    // this.handleChange = this.getYoutubeVideos.bind(this);
   }
 
   getYouTubeVideos(searchTerm) {
@@ -60,7 +62,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <div><Search handleChange={this.getYouTubeVideos.bind(this)}/></div>
           </div>
         </nav>
         <div className="row">
