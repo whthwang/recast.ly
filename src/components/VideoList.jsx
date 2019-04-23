@@ -10,7 +10,7 @@ snippet: {publishedAt: , channelId: , title: , description: , thumbnails: {}, ch
 var VideoList = (props) => (
   <div className="video-list">
     {props.videos.map(video =>
-      <VideoListEntry video={video} />    
+      <VideoListEntry video={video} onClick={props.onClick}/>    
     )}
   </div>
 );

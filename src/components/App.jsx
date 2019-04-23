@@ -3,26 +3,62 @@ import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
 
-var App = () => (
-  <div>
-    <nav className="navbar">
-      <div className="col-md-6 offset-md-3">
-        <div><h5><em>search</em> view goes here</h5></div>
+// var App = () => (
+//   <div>
+//     <nav className="navbar">
+//       <div className="col-md-6 offset-md-3">
+//         <div><h5><em>search</em> view goes here</h5></div>
+//       </div>
+//     </nav>
+//     <div className="row">
+//       <div className="col-md-7">
+//         <div><VideoPlayer video={exampleVideoData[0]} /></div>
+//       </div>
+//       <div className="col-md-5">
+//         <div><VideoList videos={exampleVideoData} /></div>
+//       </div>
+//     </div>
+//   </div>
+// );
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentVideo: exampleVideoData[0],
+      currentList: exampleVideoData
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) { //EXPLORE TARGET
+    console.log(e.target.className);//video-list-entry-title
+    this.setState(state => ({currentVideo: this}));
+  }
+
+  render() {
+    return (
+      <div>
+        <nav className="navbar">
+          <div className="col-md-6 offset-md-3">
+            <div><h5><em>search</em> view goes here</h5></div>
+          </div>
+        </nav>
+        <div className="row">
+          <div className="col-md-7">
+            <div><VideoPlayer video={exampleVideoData[0]} /></div>
+          </div>
+          <div className="col-md-5">
+            <div><VideoList videos={exampleVideoData} onClick={this.handleClick} /></div>
+          </div>
+        </div>
       </div>
-    </nav>
-    <div className="row">
-      <div className="col-md-7">
-        <div><VideoPlayer video={exampleVideoData[0]} /></div>
-      </div>
-      <div className="col-md-5">
-        <div><VideoList videos={exampleVideoData}/></div>
-      </div>
-    </div>
-  </div>
-);
+    );
+  }
+}
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 export default App;
 
-ReactDOM.render(<App />, document.getElementById('app'));
+
