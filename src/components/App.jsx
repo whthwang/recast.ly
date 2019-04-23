@@ -31,9 +31,9 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) { //EXPLORE TARGET
-    console.log(e.target.className);//video-list-entry-title
-    this.setState(state => ({currentVideo: this}));
+  handleClick(videoInfo) { 
+    //videoInfo = the video that was clicked
+    this.setState(state => ({currentVideo: videoInfo}));
   }
 
   render() {
@@ -46,7 +46,7 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div><VideoPlayer video={exampleVideoData[0]} /></div>
+            <div><VideoPlayer video={this.state.currentVideo} /></div>
           </div>
           <div className="col-md-5">
             <div><VideoList videos={exampleVideoData} onClick={this.handleClick} /></div>
