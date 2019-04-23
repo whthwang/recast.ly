@@ -1,4 +1,5 @@
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYouTube from '../lib/searchYouTube.js';
 import VideoListEntry from './VideoListEntry.js';
 //^ an array of objects
 /*

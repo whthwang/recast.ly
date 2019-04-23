@@ -1,4 +1,5 @@
 import exampleVideoData from '../data/exampleVideoData.js'; 
+import searchYouTube from '../lib/searchYouTube.js';
 
 var VideoPlayer = (props) => (
   <div className="video-player">

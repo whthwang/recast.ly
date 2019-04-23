@@ -2,6 +2,7 @@ import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoListEntry from './VideoListEntry.js';
 import VideoPlayer from './VideoPlayer.js';
+import YOUTUBE_API_KEY from '../config/youtube.js';
 
 // var App = () => (
 //   <div>
@@ -25,10 +26,28 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentVideo: exampleVideoData[0],
-      currentList: exampleVideoData
+      currentVideo: exampleVideoData[0], 
+      currentList: exampleVideoData      
     };
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  getYouTubeVideos(searchTerm) {
+    var options = {
+      key: YOUTUBE_API_KEY,
+      query: searchTerm,
+      max: 5
+    };
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        currentVideo: videos[0],
+        currentList: videos
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.getYouTubeVideos('incubus');
   }
 
   handleClick(videoInfo) { 
@@ -49,7 +68,7 @@ class App extends React.Component {
             <div><VideoPlayer video={this.state.currentVideo} /></div>
           </div>
           <div className="col-md-5">
-            <div><VideoList videos={exampleVideoData} onClick={this.handleClick} /></div>
+            <div><VideoList videos={this.state.currentList} onClick={this.handleClick} /></div>
           </div>
         </div>
       </div>
